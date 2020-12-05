@@ -1,26 +1,53 @@
 package axiom
 
-func Tonal() map[uint]string {
+func TonalMap() map[uint]string {
 	return  map[uint]string{
-		0:"Major",
-		1:"minor",
+		1:"major",
+		2:"minor",
 	}
 }
 
-func TwelveNotes(tonal uint,enharmonic bool) map[uint]string {
-	return map[uint]string{
-		0:"C",
-		1:"D-",
-		2:"D",
-		3:"E-",
-		4:"E",
-		5:"F",
-		6:"G-",
-		7:"G",
-		8:"A-",
-		9:"A",
-		10:"B-",
-		11:"B",
+func TwelveNotesMap(tonal uint) map[uint]string {
+	
+	major :=map[uint]string{
+		1:"C",
+		2:"D-",
+		3:"D",
+		4:"E-",
+		5:"E",
+		6:"F",
+		7:"G-",
+		8:"G",
+		9:"A-",
+		10:"A",
+		11:"B-",
+		12:"B",
 	}
+
+	minor :=map[uint]string{
+		1:"C",
+		2:"C+",
+		3:"D",
+		4:"D+",
+		5:"E",
+		6:"F",
+		7:"F+",
+		8:"G",
+		9:"G+",
+		10:"A",
+		11:"A+",
+		12:"B",
+	}
+
+	if TonalMap()[tonal] == TonalMap()[1] {
+		return major
+	}
+
+	if TonalMap()[tonal] == TonalMap()[2] {
+		return minor
+	}
+
+	return major
+	
 }
 

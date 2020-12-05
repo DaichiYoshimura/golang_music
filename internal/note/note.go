@@ -10,6 +10,14 @@ type Note struct {
 	key uint
 }
 
+func (note *Note) Index() uint {
+	return note.index
+}
+
+func (note *Note) SetIndex(index uint){
+	note.index = index
+}
+
 func (note *Note) Sign() string {
 	return note.sign
 }

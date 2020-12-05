@@ -1,30 +1,22 @@
 package tonality
 
 type Tonality struct {
-	tonal tonal
-	key   key
+	tonal string
+	key   string
 }
 
-type tonal indexSign
-
-type key indexSign
-type indexSign struct {
-	index uint
-	sign string
+func (t *Tonality) Tonal() string {
+	return t.tonal
 }
 
-func (indexSign *indexSign) Sign() string {
-	return indexSign.sign
+func (t *Tonality) SetTonal(tonal string) {
+	t.tonal = tonal
 }
 
-func (indexSign *indexSign) SetSign(sign string){
-	indexSign.sign = sign
+func (t *Tonality) Key() string {
+	return t.key
 }
 
-func (indexSign *indexSign) Index() uint {
-	return indexSign.index
-}
-
-func (indexSign *indexSign) SetIndex(index uint){
-	indexSign.index = index
+func (t *Tonality) SetKey(key string) {
+	t.key = key
 }

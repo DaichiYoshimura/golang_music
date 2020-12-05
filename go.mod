@@ -1,3 +1,3 @@
-module github.com/DaichiYoshimura/golang_music
+module golang_music
 
 go 1.14
