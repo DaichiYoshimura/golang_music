@@ -5,44 +5,26 @@ type Tonality struct {
 	key   key
 }
 
-type tonal struct {
+type tonal indexSign
+
+type key indexSign
+type indexSign struct {
 	index uint
-	sign  string
+	sign string
 }
 
-type key struct {
-	index uint
-	sign  string
+func (indexSign *indexSign) Sign() string {
+	return indexSign.sign
 }
 
-func (tonal *tonal) Sign() string {
-	return tonal.sign
+func (indexSign *indexSign) SetSign(sign string){
+	indexSign.sign = sign
 }
 
-func (tonal *tonal) SetSign(sign string){
-	tonal.sign = sign
+func (indexSign *indexSign) Index() uint {
+	return indexSign.index
 }
 
-func (tonal *tonal) Index() uint {
-	return tonal.index
-}
-
-func (tonal *tonal) SetIndex(index uint){
-	tonal.index = index
-}
-
-func (key *key) Sign() string {
-	return key.sign
-}
-
-func (key *key) SetSign(sign string){
-	key.sign = sign
-}
-
-func (key *key) Index() uint {
-	return key.index
-}
-
-func (key *key) SetIndex(index uint){
-	key.index = index
+func (indexSign *indexSign) SetIndex(index uint){
+	indexSign.index = index
 }
