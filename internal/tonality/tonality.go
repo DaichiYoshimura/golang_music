@@ -1,6 +1,5 @@
 package tonality
 
-// Tonality :
 type Tonality struct {
 	tonal tonal
 	key   key
