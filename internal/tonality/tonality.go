@@ -29,6 +29,7 @@ func (t *Tonality) TonalIndex() uint {
 // SetTonalIndex :
 func (t *Tonality) SetTonalIndex(tonal uint) {
 	t.tonal.SetIndex(tonal)
+	t.reinitialize()
 }
 
 // TonalValue :
@@ -39,6 +40,7 @@ func (t *Tonality) TonalValue() string {
 // SetTonalValue :
 func (t *Tonality) SetTonalValue(tonal string) {
 	t.tonal.SetValue(tonal)
+	t.reinitialize()
 }
 
 // KeyIndex :
@@ -48,7 +50,7 @@ func (t *Tonality) KeyIndex() uint {
 
 // SetKeyIndex :
 func (t *Tonality) SetKeyIndex(key uint) {
-	t.tonal.SetIndex(key)
+	t.key.SetIndex(key)
 }
 
 // KeyValue :
@@ -58,5 +60,11 @@ func (t *Tonality) KeyValue() string {
 
 // SetKeyValue :
 func (t *Tonality) SetKeyValue(key string) {
-	t.tonal.SetValue(key)
+	t.key.SetValue(key)
+}
+
+func (t *Tonality) reinitialize() {
+	keyIndex := t.KeyIndex()
+	t.key = *sign.New(axiom.TwelveNotes(t.TonalIndex()))
+	t.SetKeyIndex(keyIndex)
 }

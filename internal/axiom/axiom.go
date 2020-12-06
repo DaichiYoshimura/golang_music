@@ -13,7 +13,7 @@ func Tonal() dict.Dict {
 // TwelveNotes :
 func TwelveNotes(tonal uint) dict.Dict {
 
-	if isMinor(tonal) {
+	if isMinor(tonal) == true {
 		return minorNotes()
 	}
 	return majorNotes()

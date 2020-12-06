@@ -5,5 +5,8 @@ import "golang_music/internal/tonality"
 func main() {
 
 	t := tonality.New("major", "C")
-	print(t.TonalValue())
+	t.SetKeyIndex(2)
+	print(t.KeyValue())
+	t.SetTonalIndex(2)
+	print(t.KeyValue())
 }
