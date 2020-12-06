@@ -1,22 +1,62 @@
 package tonality
 
+import (
+	"golang_music/internal/axiom"
+	"golang_music/internal/util/sign"
+)
+
+// Tonality :
 type Tonality struct {
-	tonal string
-	key   string
+	tonal sign.Sign
+	key   sign.Sign
 }
 
-func (t *Tonality) Tonal() string {
-	return t.tonal
+// New :
+func New(tonal string, key string) *Tonality {
+	t := new(Tonality)
+	t.tonal = *sign.New(axiom.Tonal())
+	t.SetTonalValue(tonal)
+	t.key = *sign.New(axiom.TwelveNotes(t.TonalIndex()))
+	t.SetKeyValue(key)
+	return t
 }
 
-func (t *Tonality) SetTonal(tonal string) {
-	t.tonal = tonal
+// TonalIndex :
+func (t *Tonality) TonalIndex() uint {
+	return t.tonal.Index()
 }
 
-func (t *Tonality) Key() string {
-	return t.key
+// SetTonalIndex :
+func (t *Tonality) SetTonalIndex(tonal uint) {
+	t.tonal.SetIndex(tonal)
 }
 
-func (t *Tonality) SetKey(key string) {
-	t.key = key
+// TonalValue :
+func (t *Tonality) TonalValue() string {
+	return t.tonal.Value()
+}
+
+// SetTonalValue :
+func (t *Tonality) SetTonalValue(tonal string) {
+	t.tonal.SetValue(tonal)
+}
+
+// KeyIndex :
+func (t *Tonality) KeyIndex() uint {
+	return t.key.Index()
+}
+
+// SetKeyIndex :
+func (t *Tonality) SetKeyIndex(key uint) {
+	t.tonal.SetIndex(key)
+}
+
+// KeyValue :
+func (t *Tonality) KeyValue() string {
+	return t.key.Value()
+}
+
+// SetKeyValue :
+func (t *Tonality) SetKeyValue(key string) {
+	t.tonal.SetValue(key)
 }

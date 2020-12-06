@@ -1,13 +1,20 @@
 package note
 
+import "golang_music/internal/tonality"
+
 type Note struct {
 	index uint
 	sign string
-	degree uint
+	degree float32
 	octave uint
 	duration float32
-	tonal uint
-	key uint
+	tonality tonality.Tonality
+}
+
+func NewNote(tonality tonality.Tonality) *Note {
+	n :=new(Note)
+	n.tonality = tonality
+	return n
 }
 
 func (note *Note) Index() uint {
@@ -26,11 +33,11 @@ func (note *Note) SetSign(sign string){
 	note.sign = sign
 }
 
-func (note *Note) Degree() uint {
+func (note *Note) Degree() float32 {
 	return note.degree
 }
 
-func (note *Note) SetDegree(degree uint){
+func (note *Note) SetDegree(degree float32){
 	note.degree = degree
 }
 
