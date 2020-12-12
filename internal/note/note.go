@@ -17,8 +17,8 @@ type Note struct {
 
 //New :
 func New(tonality *tonality.Tonality) *Note {
-	i := new(n)
-	i.tonality = tonality
+	i := new(Note)
+	i.tonality = *tonality
 	return i
 }
 
@@ -76,16 +76,16 @@ func (n *Note) tonalIndex() uint {
 	return n.tonality.TonalIndex()
 }
 
-func (n *Note) setTonalIndex(index uint) uint {
-	return n.tonality.SetTonalIndex(index)
+func (n *Note) setTonalIndex(index uint) {
+	n.tonality.SetTonalIndex(index)
 }
 
 func (n *Note) keyIndex() uint {
 	return n.tonality.KeyIndex()
 }
 
-func (n *Note) setKeyIndex(index uint) uint {
-	return n.tonality.SetKeyIndex(index)
+func (n *Note) setKeyIndex(index uint) {
+	n.tonality.SetKeyIndex(index)
 }
 
 func (n *Note) symbolOfIndex(index uint) string {
@@ -93,25 +93,23 @@ func (n *Note) symbolOfIndex(index uint) string {
 	return cnv.ValueOf(index)
 }
 
-func (n *Note) symbolOfDegree(degree float32) string {
-	
+func (n *Note) symbolOfDegree(degree float32) {
+
 }
 
-func (n *Note) indexOfSymbol(symbol uint) string {
+func (n *Note) indexOfSymbol(symbol string) uint {
 	cnv := axiom.TwelveNotes(n.tonalIndex())
-	return cnv.IndexOf(index)
+	return cnv.IndexOf(symbol)
 }
 
-func (n *Note) indexOfDegree(degree float32) uint {
-
-}
-
-func (n *Note) degreeOfIndex(index uint) float32 {
+func (n *Note) indexOfDegree(degree float32) {
 
 }
 
-func (n *Note) degreeOfSymbol(symbol string) float32 {
+func (n *Note) degreeOfIndex(index uint) {
 
 }
 
+func (n *Note) degreeOfSymbol(symbol string) {
 
+}
