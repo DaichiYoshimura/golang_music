@@ -1,17 +1,17 @@
 package axiom
 
-import "golang_music/internal/util/dict"
+import "golang_music/internal/util"
 
 // Tonal :
-func Tonal() dict.Dict {
-	return dict.Dict{
+func Tonal() util.Dict {
+	return util.Dict{
 		1: "major",
 		2: "minor",
 	}
 }
 
 // TwelveNotes :
-func TwelveNotes(tonal uint) dict.Dict {
+func TwelveNotes(tonal uint) util.Dict {
 
 	if isMinor(tonal) == true {
 		return minorNotes()
@@ -22,11 +22,15 @@ func TwelveNotes(tonal uint) dict.Dict {
 
 func isMinor(tonal uint) bool {
 	t := Tonal()
-	return t.IndexOf("minor") == tonal
+	r, e := t.ValueOf(tonal)
+	if e != nil || r != "minor" {
+		return false
+	}
+	return true
 }
 
-func majorNotes() dict.Dict {
-	return dict.Dict{
+func majorNotes() util.Dict {
+	return util.Dict{
 		1:  "C",
 		2:  "D-",
 		3:  "D",
@@ -42,8 +46,8 @@ func majorNotes() dict.Dict {
 	}
 }
 
-func minorNotes() dict.Dict {
-	return dict.Dict{
+func minorNotes() util.Dict {
+	return util.Dict{
 		1:  "C",
 		2:  "C+",
 		3:  "D",

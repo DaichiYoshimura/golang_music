@@ -2,7 +2,6 @@ package tonality
 
 import (
 	"golang_music/internal/axiom"
-	"golang_music/internal/util/sign"
 )
 
 // Tonality :

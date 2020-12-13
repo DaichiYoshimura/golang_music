@@ -88,18 +88,26 @@ func (n *Note) setKeyIndex(index uint) {
 	n.tonality.SetKeyIndex(index)
 }
 
-func (n *Note) symbolOfIndex(index uint) string {
+func (n *Note) symbolOfIndex(index uint) (string, error) {
 	cnv := axiom.TwelveNotes(n.tonalIndex())
-	return cnv.ValueOf(index)
+	r, e := cnv.ValueOf(index)
+	if e != nil {
+		return _, error
+	}
+	return r, _
 }
 
 func (n *Note) symbolOfDegree(degree float32) {
 
 }
 
-func (n *Note) indexOfSymbol(symbol string) uint {
+func (n *Note) indexOfSymbol(symbol string) (uint, error) {
 	cnv := axiom.TwelveNotes(n.tonalIndex())
-	return cnv.IndexOf(symbol)
+	r, e := cnv.IndexOf(symbol)
+	if e != nil {
+		return _, error
+	}
+	return r, _
 }
 
 func (n *Note) indexOfDegree(degree float32) {
