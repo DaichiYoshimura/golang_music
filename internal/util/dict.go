@@ -1,5 +1,7 @@
 package util
 
+import "errors"
+
 // Dict : custom map
 type Dict map[uint]string
 
@@ -13,18 +15,21 @@ type Item struct {
 // IndexOf : Dict Method
 func (d *Dict) IndexOf(value string) (uint, error) {
 	r := d.reverse()
-	if v, ok := r[value]; ok {
-		return v, _
+	v, ok := r[value]
+	if ok == false {
+		return v, errors.New("No Index Exists")
 	}
-	return _, error
+	return v, nil
 }
 
 // ValueOf : Dict Method
 func (d *Dict) ValueOf(index uint) (string, error) {
-	if v, ok := d[index]; ok {
-		return v, _
+	r := *d
+	v, ok := r[index]
+	if ok == false {
+		return v, errors.New("No Value Exists")
 	}
-	return _, error
+	return v, nil
 }
 
 // Indexes : Dict Method
@@ -56,7 +61,7 @@ func (d *Dict) reverse() map[string]uint {
 // New : Item Method
 func New(d *Dict) *Item {
 	i := new(Item)
-	i.dict = d
+	i.dict = *d
 	return i
 }
 
@@ -72,8 +77,8 @@ func (i *Item) SetIndex(index uint) error {
 	if e != nil {
 		return e
 	}
-	i, value = r
-	return _
+	i.value = r
+	return nil
 }
 
 // Value : Item Attribute
@@ -88,23 +93,28 @@ func (i *Item) SetValue(value string) error {
 	if e != nil {
 		return e
 	}
-	i, index = r
-	return _
+	i.index = r
+	return nil
 
 }
 
 func (i *Item) valueOf(index uint) (string, error) {
 	r, e := i.dict.ValueOf(index)
 	if e != nil {
-		return _, e
+		return r, e
 	}
-	return r, _
+	return r, nil
 }
 
 func (i *Item) indexOf(value string) (uint, error) {
 	r, e := i.dict.IndexOf(value)
 	if e != nil {
-		return _, e
+		return r, e
 	}
-	return r, _
+	return r, nil
+}
+
+// SetDict :
+func (i *Item) SetDict(dict *Dict){
+	i.dict = *dict
 }
